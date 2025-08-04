@@ -1,0 +1,5 @@
+server:
+  port: 8081
+
+dgs.graphql:
+  path: /invoice/graphql

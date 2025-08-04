@@ -1,0 +1,5 @@
+/.idea
+/vendor-service/target
+/receiving-service/target
+/purchase-order-service/target
+/invoice-service/target

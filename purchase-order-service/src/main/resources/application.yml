@@ -5,3 +5,4 @@ spring:
   graphql:
     graphiql:
       enabled: true
+      path: /graphql-ui

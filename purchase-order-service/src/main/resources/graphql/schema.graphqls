@@ -1,0 +1,21 @@
+type Query {
+    purchaseOrderByPONumber(purchaseOrderNumber: Int): PurchaseOrder,
+    purchaseOrderWithPONumber(purchaseOrderNumber: Int): [PurchaseOrder]
+}
+
+type PurchaseOrder {
+    id: ID
+    purchaseOrderNumber: Int
+    vendorNumber: Int
+    totalAmount: Float
+    purchaseOrderLines: [PurchaseOrderLine]
+}
+
+type PurchaseOrderLine {
+    id: ID
+    lineNumber: Int
+    itemNumber: String
+    qty: Int
+    uom: String
+    amount: Float
+}

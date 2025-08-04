@@ -1,2 +1,1 @@
-# federated-ap
-Repository to explain the Federated Graph.
+https://spring.io/guides/gs/graphql-server

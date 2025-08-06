@@ -1,12 +1,14 @@
 package dev.ankis.po.controller;
 
 import dev.ankis.po.models.PurchaseOrder;
+import dev.ankis.po.models.PurchaseOrderLine;
 import dev.ankis.po.services.PurchaseOrderService;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Controller;
 
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -22,8 +24,9 @@ public class POController {
         return purchaseOrderService.getPoDetailsByPoNumber(purchaseOrderNumber);
     }
 
-//    @SchemaMapping
-//    public Author author(Book book) {
-//        return Author.getById(book.authorId());
-//    }
+    @SchemaMapping(typeName = "PurchaseOrder", field="purchaseOrderLines")
+    public List<PurchaseOrderLine> author(PurchaseOrder purchaseOrder) {
+        List<PurchaseOrderLine> purchaseOrderLines = List.of(new PurchaseOrderLine(purchaseOrder.id(), 1, "I12", 25, "EACH", 100D));
+        return purchaseOrderLines;
+    }
 }

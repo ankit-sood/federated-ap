@@ -6,7 +6,6 @@ public record PurchaseOrder(String id,
                             Double totalAmount,
                             Long purchaseOrderNumber,
                             Integer vendorNumber,
-                            Long altPurchaseOrderNumber,
-                            List<PurchaseOrderLine> purchaseOrderLines) {
+                            Long altPurchaseOrderNumber) {
 
 }

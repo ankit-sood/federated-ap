@@ -11,15 +11,12 @@ public class PurchaseOrderService {
     private static final Map<Long, PurchaseOrder> PURCHASE_ORDERS = new HashMap<>();
 
     public PurchaseOrderService() {
-        PURCHASE_ORDERS.put(123l, new PurchaseOrder("PO1", 10000D, 123l, 111, null, Collections.emptyList()));
-        PURCHASE_ORDERS.put(124l, new PurchaseOrder("PO2", 20000D, 124l, 111, null, Collections.emptyList()));
-
-        List<PurchaseOrderLine> purchaseOrderLines = List.of(new PurchaseOrderLine("PO3", 1, "I12", 25, "EACH", 100D));
-        PURCHASE_ORDERS.put(125l, new PurchaseOrder("PO3", 25000D, 125l, 111, 123l, purchaseOrderLines));
-
-        PURCHASE_ORDERS.put(126l, new PurchaseOrder("PO4", 30000D, 126l, 111, 124l, Collections.emptyList()));
-        PURCHASE_ORDERS.put(127l, new PurchaseOrder("PO5", 80000D, 127l, 111, null, Collections.emptyList()));
-        PURCHASE_ORDERS.put(128l, new PurchaseOrder("PO6", 90000D, 128l, 111, null, Collections.emptyList()));
+        PURCHASE_ORDERS.put(123l, new PurchaseOrder("PO1", 10000D, 123l, 111, null));
+        PURCHASE_ORDERS.put(124l, new PurchaseOrder("PO2", 20000D, 124l, 111, null));
+        PURCHASE_ORDERS.put(125l, new PurchaseOrder("PO3", 25000D, 125l, 111, 123l));
+        PURCHASE_ORDERS.put(126l, new PurchaseOrder("PO4", 30000D, 126l, 111, 124l));
+        PURCHASE_ORDERS.put(127l, new PurchaseOrder("PO5", 80000D, 127l, 111, null));
+        PURCHASE_ORDERS.put(128l, new PurchaseOrder("PO6", 90000D, 128l, 111, null));
     }
 
     public List<PurchaseOrder> getPoDetailsByPoNumber(Long purchaseOrderNumber) {

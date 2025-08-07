@@ -1,6 +1,5 @@
-package dev.ankis.po;
+package dev.ankis.po.controller;
 
-import dev.ankis.po.controller.POController;
 import dev.ankis.po.models.PurchaseOrder;
 import dev.ankis.po.services.PurchaseOrderService;
 import org.junit.jupiter.api.Test;

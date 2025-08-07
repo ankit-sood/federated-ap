@@ -3,7 +3,7 @@ type Query {
 }
 
 type PurchaseOrder {
-    id: ID
+    id: ID!
     purchaseOrderNumber: Int
     vendorNumber: Int
     totalAmount: Float
@@ -12,7 +12,7 @@ type PurchaseOrder {
 }
 
 type PurchaseOrderLine {
-    id: ID
+    id: ID!
     lineNumber: Int
     itemNumber: String
     qty: Int

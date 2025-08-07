@@ -1,0 +1,17 @@
+query purchaseOrder{
+    purchaseOrderWithPONumber(purchaseOrderNumber: 125) {
+        purchaseOrderNumber
+        totalAmount
+        altPO {
+            purchaseOrderNumber
+            totalAmount
+        }
+        purchaseOrderLines {
+            lineNumber
+            itemNumber
+            qty
+            uom
+            amount
+        }
+    }
+}

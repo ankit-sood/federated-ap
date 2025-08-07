@@ -1,0 +1,18 @@
+query invoice{
+    invoice(invoiceNumber: "INV-11") {
+        id
+        invoiceNumber
+        vendorNumber
+        totalAmount
+        destNumber
+        totalQty
+        purchaseOrderNumber
+        invoiceLines {
+            id
+            lineNumber
+            itemNumber
+            qty
+            amount
+        }
+    }
+}

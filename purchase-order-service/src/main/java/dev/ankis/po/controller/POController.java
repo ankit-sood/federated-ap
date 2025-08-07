@@ -25,8 +25,14 @@ public class POController {
     }
 
     @SchemaMapping(typeName = "PurchaseOrder", field="purchaseOrderLines")
-    public List<PurchaseOrderLine> author(PurchaseOrder purchaseOrder) {
+    public List<PurchaseOrderLine> findPurchaseOrderLines(PurchaseOrder purchaseOrder) {
         List<PurchaseOrderLine> purchaseOrderLines = List.of(new PurchaseOrderLine(purchaseOrder.id(), 1, "I12", 25, "EACH", 100D));
         return purchaseOrderLines;
+    }
+
+    @SchemaMapping(typeName = "PurchaseOrder", field="altPO")
+    public PurchaseOrder findAlternatePO(PurchaseOrder purchaseOrder) {
+        List<PurchaseOrder> altPOList = purchaseOrderService.getPoDetailsByPoNumber(purchaseOrder.altPurchaseOrderNumber());
+        return altPOList.get(0);
     }
 }

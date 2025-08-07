@@ -21,9 +21,6 @@ public class PurchaseOrderService {
 
     public List<PurchaseOrder> getPoDetailsByPoNumber(Long purchaseOrderNumber) {
         PurchaseOrder primaryPurchaseOrder = PURCHASE_ORDERS.get(purchaseOrderNumber);
-        if (primaryPurchaseOrder != null && primaryPurchaseOrder.altPurchaseOrderNumber() != null) {
-            return List.of(primaryPurchaseOrder, PURCHASE_ORDERS.get(primaryPurchaseOrder.altPurchaseOrderNumber()));
-        }
         return primaryPurchaseOrder!= null ? List.of(primaryPurchaseOrder) : List.of();
     }
 }

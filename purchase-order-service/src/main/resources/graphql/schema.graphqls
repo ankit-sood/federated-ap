@@ -7,6 +7,7 @@ type PurchaseOrder {
     purchaseOrderNumber: Int
     vendorNumber: Int
     totalAmount: Float
+    altPO: PurchaseOrder
     purchaseOrderLines: [PurchaseOrderLine]
 }
 

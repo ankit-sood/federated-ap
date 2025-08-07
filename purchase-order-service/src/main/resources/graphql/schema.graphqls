@@ -2,7 +2,7 @@ type Query {
     purchaseOrderWithPONumber(purchaseOrderNumber: Int): [PurchaseOrder]
 }
 
-type PurchaseOrder {
+type PurchaseOrder @key(fields: "purchaseOrderNumber"){
     id: ID!
     purchaseOrderNumber: Int
     vendorNumber: Int

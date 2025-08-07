@@ -1,0 +1,62 @@
+query {
+  _entities(representations: [{__typename: "PurchaseOrder", purchaseOrderNumber: "125"}]) {
+    ... on PurchaseOrder {
+      purchaseOrderNumber
+    	totalAmount
+    	altPO {
+      	purchaseOrderNumber
+      	totalAmount
+    	}
+    	purchaseOrderLines {
+      	lineNumber
+      	itemNumber
+      	qty
+      	uom
+      	amount
+    	}
+    }
+  }
+}
+
+=======================================================================================================================
+
+
+query purchaseOrder{
+  purchaseOrderWithPONumber(purchaseOrderNumber: 125) {
+    purchaseOrderNumber
+    totalAmount
+    altPO {
+      purchaseOrderNumber
+      totalAmount
+    }
+    purchaseOrderLines {
+      lineNumber
+      itemNumber
+      qty
+      uom
+      amount
+    }
+  }
+}
+
+
+
+=======================================================================================================================
+
+query {
+  purchaseOrderWithPONumber(purchaseOrderNumber: 125) {
+    purchaseOrderNumber
+    totalAmount
+    altPO {
+      purchaseOrderNumber
+      totalAmount
+    }
+    purchaseOrderLines {
+      lineNumber
+      itemNumber
+      qty
+      uom
+      amount
+    }
+  }
+}

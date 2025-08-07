@@ -1,5 +1,8 @@
 server:
-  port: 8081
+  port: 8091
 
-dgs.graphql:
-  path: /invoice/graphql
+spring:
+  graphql:
+    graphiql:
+      enabled: true
+      path: /graphql-ui

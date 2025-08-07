@@ -1,0 +1,22 @@
+type Query {
+    invoice(invoiceNumber: String): Invoice
+}
+
+type Invoice {
+    id: ID!
+    invoiceNumber: String!
+    vendorNumber: Int!
+    totalAmount: Float!
+    destNumber: Int!
+    totalQty: Int!
+    purchaseOrderNumber: Int!
+    invoiceLines: [InvoiceLine]
+}
+
+type InvoiceLine {
+    id: ID!
+    lineNumber: Int!
+    itemNumber: String!
+    qty: Int!
+    amount: Float!
+}

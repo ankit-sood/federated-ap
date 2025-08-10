@@ -4,7 +4,7 @@ type Query {
 
 type PurchaseOrder @key(fields: "purchaseOrderNumber"){
     id: ID!
-    purchaseOrderNumber: Int
+    purchaseOrderNumber: Int!
     vendorNumber: Int
     totalAmount: Float
     altPO: PurchaseOrder

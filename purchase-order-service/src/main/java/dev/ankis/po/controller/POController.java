@@ -1,5 +1,6 @@
 package dev.ankis.po.controller;
 
+import dev.ankis.po.exceptions.PurchaseOrderNotFoundException;
 import dev.ankis.po.models.PurchaseOrder;
 import dev.ankis.po.models.PurchaseOrderLine;
 import dev.ankis.po.services.PurchaseOrderService;
@@ -23,7 +24,7 @@ public class POController {
     @EntityMapping("PurchaseOrder")
     public PurchaseOrder find(@Argument Long purchaseOrderNumber) {
         List<PurchaseOrder> purchaseOrders = purchaseOrderService.getPoDetailsByPoNumber(purchaseOrderNumber);
-        return purchaseOrders.stream().findFirst().orElse(null);
+        return purchaseOrders.stream().findFirst().orElseThrow(() -> new PurchaseOrderNotFoundException("Purchase order not found"));
     }
 
 
@@ -40,7 +41,10 @@ public class POController {
 
     @SchemaMapping(typeName = "PurchaseOrder", field="altPO")
     public PurchaseOrder findAlternatePO(PurchaseOrder purchaseOrder) {
-        List<PurchaseOrder> altPOList = purchaseOrderService.getPoDetailsByPoNumber(purchaseOrder.altPurchaseOrderNumber());
-        return altPOList.get(0);
+        if(purchaseOrder.altPurchaseOrderNumber() != null) {
+            List<PurchaseOrder> altPOList = purchaseOrderService.getPoDetailsByPoNumber(purchaseOrder.altPurchaseOrderNumber());
+            return altPOList.get(0);
+        }
+        return null;
     }
 }

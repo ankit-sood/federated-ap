@@ -1,8 +1,8 @@
 type Query {
-    invoice(invoiceNumber: String): Invoice
+    invoiceByInvoiceNumber(invoiceNumber: String): Invoice
 }
 
-type Invoice {
+type Invoice @key(fields: "invoiceNumber"){
     id: ID!
     invoiceNumber: String!
     vendorNumber: Int!
@@ -10,7 +10,8 @@ type Invoice {
     destNumber: Int!
     totalQty: Int!
     purchaseOrderNumber: Int!
-    invoiceLines: [InvoiceLine]
+    invoiceLines: [InvoiceLine!]!
+    purchaseOrder: PurchaseOrder
 }
 
 type InvoiceLine {
@@ -19,4 +20,12 @@ type InvoiceLine {
     itemNumber: String!
     qty: Int!
     amount: Float!
+}
+
+type PurchaseOrder @extends @key(fields: "purchaseOrderNumber"){
+    id: ID! @external
+    purchaseOrderNumber: Int! @external
+    vendorNumber: Int @external
+    totalAmount: Float @external
+    altPO: PurchaseOrder @external
 }

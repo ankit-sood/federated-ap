@@ -30,6 +30,8 @@ query {
 }
 ```
 
-** References **
+**References:**
 - [GraphQL Maturity](https://dev.to/sandipd/from-basics-to-supergraph-a-practical-guide-for-your-graphql-adoption-journey-5cff)
 - [Spring for graphQL](https://spring.io/guides/gs/graphql-server)
+- [Dgs & Spring for graphQL](https://netflix.github.io/dgs/spring-graphql-integration/)
+- [Request Execution](https://docs.spring.io/spring-graphql/reference/request-execution.html)

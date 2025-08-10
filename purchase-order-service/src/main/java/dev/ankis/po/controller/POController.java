@@ -4,6 +4,8 @@ import dev.ankis.po.exceptions.PurchaseOrderNotFoundException;
 import dev.ankis.po.models.PurchaseOrder;
 import dev.ankis.po.models.PurchaseOrderLine;
 import dev.ankis.po.services.PurchaseOrderService;
+import graphql.schema.DataFetchingEnvironment;
+import graphql.schema.SelectedField;
 import org.springframework.graphql.data.federation.EntityMapping;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
@@ -12,6 +14,8 @@ import org.springframework.stereotype.Controller;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Controller
 public class POController {
@@ -22,19 +26,22 @@ public class POController {
     }
 
     @EntityMapping("PurchaseOrder")
-    public PurchaseOrder find(@Argument Long purchaseOrderNumber) {
+    public PurchaseOrder find(@Argument Long purchaseOrderNumber, DataFetchingEnvironment env) {
+        Set<String> fields = getFields(env);
         List<PurchaseOrder> purchaseOrders = purchaseOrderService.getPoDetailsByPoNumber(purchaseOrderNumber);
         return purchaseOrders.stream().findFirst().orElseThrow(() -> new PurchaseOrderNotFoundException("Purchase order not found"));
     }
 
 
     @QueryMapping("purchaseOrderWithPONumber")
-    public List<PurchaseOrder> findPurchaseOrderByPONumber(@Argument Long purchaseOrderNumber) {
+    public List<PurchaseOrder> findPurchaseOrderByPONumber(@Argument Long purchaseOrderNumber, DataFetchingEnvironment env) {
+        Set<String> fields = getFields(env);
         return purchaseOrderService.getPoDetailsByPoNumber(purchaseOrderNumber);
     }
 
     @SchemaMapping(typeName = "PurchaseOrder", field="purchaseOrderLines")
-    public List<PurchaseOrderLine> findPurchaseOrderLines(PurchaseOrder purchaseOrder) {
+    public List<PurchaseOrderLine> findPurchaseOrderLines(PurchaseOrder purchaseOrder, DataFetchingEnvironment env) {
+        Set<String> fields = getFields(env);
         List<PurchaseOrderLine> purchaseOrderLines = List.of(new PurchaseOrderLine(purchaseOrder.id(), 1, "I12", 25, "EACH", 100D));
         return purchaseOrderLines;
     }
@@ -46,5 +53,11 @@ public class POController {
             return altPOList.get(0);
         }
         return null;
+    }
+
+    private Set<String> getFields(DataFetchingEnvironment env){
+        return env.getSelectionSet().getFields().stream()
+                .map(SelectedField::getName)
+                .collect(Collectors.toSet());
     }
 }

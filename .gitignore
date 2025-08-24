@@ -3,3 +3,4 @@
 /receiving-service/target
 /purchase-order-service/target
 /invoice-service/target
+/gateway/node_modules
